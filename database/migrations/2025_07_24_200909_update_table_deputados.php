@@ -24,19 +24,15 @@ return new class extends Migration
 
             $table->string('condicao_eleitoral')->nullable();
             $table->datetime('data_ultimo_status')->nullable();
-            $table->string('descricao_status')->nullable();
+            $table->text('descricao_status')->nullable();
             $table->string('nome_eleitoral')->nullable();
             $table->string('situacao')->nullable();
             $table->string('url_foto')->nullable();
-
-            $table->boolean('detalhes_carregados')->default(false);
-            $table->timestamp('detalhes_atualizados_em')->nullable();
 
             $table->index('cpf');
             $table->index('data_nascimento');
             $table->index('sexo');
             $table->index('uf_nascimento');
-            $table->index('detalhes_carregados');
         });
     }
 
@@ -50,7 +46,6 @@ return new class extends Migration
             $table->dropIndex(['data_nascimento']);
             $table->dropIndex(['sexo']);
             $table->dropIndex(['uf_nascimento']);
-            $table->dropIndex(['detalhes_carregados']);
 
             $table->dropColumn([
                 'cpf',
@@ -69,7 +64,6 @@ return new class extends Migration
                 'situacao',
                 'url_foto',
                 'detalhes_carregados',
-                'detalhes_atualizados_em'
             ]);
         });
 

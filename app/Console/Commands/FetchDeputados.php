@@ -11,25 +11,18 @@ class FetchDeputados extends Command
     protected $signature = 'deputados:fetch';
     protected $description = 'Busca todos os deputados da API da Câmara dos Deputados';
 
-    /**
-     * Execute the console command.
-     */
     public function handle(): void
     {
         $this->info('Iniciando busca de deputados...');
 
         $baseUrl = 'https://dadosabertos.camara.leg.br/api/v2/deputados';
         $params = [
-            'ordem' => 'ASC',
-            'ordenarPor' => 'id'
+            'dataInicio' => '1990-01-01'
         ];
-
         $paginaAtual = 1;
         $totalProcessado = 0;
-
         do {
             $this->info("Processando página {$paginaAtual}...");
-
             $response = Http::get($baseUrl, array_merge($params, ['pagina' => $paginaAtual]));
 
             if (!$response->successful()) {
@@ -49,13 +42,11 @@ class FetchDeputados extends Command
             $this->warn("Página {$paginaAtual} processada. {$totalProcessado} deputados enviados para fila.");
 
             $proximaPagina = $this->getProximaPaginaUrl($links);
-
             if ($proximaPagina) {
                 $paginaAtual++;
             } else {
                 break;
             }
-
         } while ($proximaPagina);
 
         $this->info("Fim. Total de buscas realizadas: {$totalProcessado}");

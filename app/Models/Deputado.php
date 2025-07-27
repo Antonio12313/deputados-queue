@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Deputado extends Model
@@ -33,9 +35,7 @@ class Deputado extends Model
             'descricao_status',
             'nome_eleitoral',
             'situacao',
-            'url_foto',
-            'detalhes_carregados',
-            'detalhes_atualizados_em'
+            'url_foto'
     ];
 
     protected $casts = [
@@ -44,18 +44,41 @@ class Deputado extends Model
             'data_nascimento' => 'date',
             'data_falecimento' => 'date',
             'data_ultimo_status' => 'datetime',
-            'detalhes_carregados' => 'boolean',
-            'detalhes_atualizados_em' => 'timestamp',
     ];
 
 
-    public function gabinete(): HasMany
+    public function gabinete(): HasOne
     {
-        return $this->hasMany(DeputadosGabinete::class, 'id_deputado');
+        return $this->hasOne(DeputadosGabinete::class, 'deputado_id', 'id_deputado');
     }
 
-    public function redesSocial(): HasMany
+    public function legislaturaAtual(): HasMany
     {
-        return $this->hasMany(DeputadosRedesSocial::class, 'id_deputado');
+        return $this->hasMany(DeputadoLegislatura::class)->orderBy('id_legislatura', 'desc');
+    }
+
+    public function redesSociais(): HasMany
+    {
+        return $this->hasMany(DeputadosRedesSocial::class, 'deputado_id', 'id_deputado');
+    }
+
+    public function despesas(): HasMany
+    {
+        return $this->hasMany(DeputadoDespesa::class, 'deputado_id', 'id_deputado');
+    }
+
+    public function scopeComDetalhes($query)
+    {
+        return $query->where('detalhes_carregados', true);
+    }
+
+    public function scopeSemDetalhes($query)
+    {
+        return $query->where('detalhes_carregados', false);
+    }
+
+    public function situacao(): BelongsTo
+    {
+        return $this->belongsTo(DeputadoSituacao::class, 'situacao', 'sigla');
     }
 }

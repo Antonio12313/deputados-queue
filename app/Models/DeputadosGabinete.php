@@ -20,6 +20,6 @@ class DeputadosGabinete extends Model
 
     public function deputado(): BelongsTo
     {
-        $this->belongsTo(Deputado::class, 'deputado_id')->withTrashed();
+        return $this->belongsTo(Deputado::class, 'deputado_id', 'id_deputado')->withTrashed();
     }
 }
