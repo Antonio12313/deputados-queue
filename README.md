@@ -1,5 +1,5 @@
 # Link para visualizar online
- - **https://deputados.serveo.net**
+ - **https://desktop-d2nh9lp.tailb3304c.ts.net**
 # Projeto Deputados - Laravel + Inertia + React TypeScript
 
 Sistema para gerenciamento e análise de dados de deputados brasileiros, desenvolvido com Laravel, Inertia.js e React TypeScript.
