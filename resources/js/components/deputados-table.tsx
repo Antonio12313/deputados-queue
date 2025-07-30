@@ -205,7 +205,7 @@ export function DeputadosTable({ deputados }: DeputadosTableProps) {
                                 <TableRow key={`${deputado.id}-${index}`}>
                                     <TableCell>
                                         <Avatar className="h-10 w-10">
-                                            <AvatarImage src={deputado.url_foto.trim()} alt={deputado.nome} />
+                                            <AvatarImage src={deputado.url_foto} alt={deputado.nome} />
                                             <AvatarFallback>
                                                 <User className="h-4 w-4" />
                                             </AvatarFallback>
@@ -248,7 +248,7 @@ export function DeputadosTable({ deputados }: DeputadosTableProps) {
                                                 <div className="grid gap-6 py-4">
                                                     <div className="flex items-center gap-4">
                                                         <Avatar className="h-20 w-20">
-                                                            <AvatarImage src={deputado.url_foto.trim()} alt={deputado.nome} />
+                                                            <AvatarImage src={deputado.url_foto} alt={deputado.nome} />
                                                             <AvatarFallback>
                                                                 <User className="h-8 w-8" />
                                                             </AvatarFallback>
