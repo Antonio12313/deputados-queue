@@ -50,13 +50,12 @@ class DeputadoRepository implements DeputadoRepositoryInterface
 
     public function getDeputadosForListing(): EloquentBuilder
     {
-        return $this->getDeputados()->select($this->getSelectFields());
+        return $this->getDeputados();
     }
 
     public function getDeputadoWithDetails(int $id): ?Deputado
     {
         return Deputado::query()
-            ->select($this->getDetailFields())
             ->withRelations()
             ->find($id);
     }
