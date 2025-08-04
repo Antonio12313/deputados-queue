@@ -1,17 +1,6 @@
-# Link para visualizar online
- - **https://desktop-d2nh9lp.tailb3304c.ts.net**
-# Projeto Deputados - Laravel + Inertia + React TypeScript
+# Projeto Deputados - Laravel + Inertia + React TypeScript + Docker
 
 Sistema para gerenciamento e análise de dados de deputados brasileiros, desenvolvido com Laravel, Inertia.js e React TypeScript.
-
-## 🛠️ Stack Tecnológica
-
-- **Backend**: Laravel
-- **Frontend**: React TypeScript
-- **Bridge**: Inertia.js
-- **Containerização**: Docker
-- **Monitoramento de Filas**: Laravel Horizon
-- **Gerenciador de Processos**: Supervisor
 
 ## 📋 Pré-requisitos
 
